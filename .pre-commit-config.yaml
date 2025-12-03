@@ -3,10 +3,9 @@ repos:
     rev: v6.0.0
     hooks:
       - id: trailing-whitespace
-          exclude: '^\.github/workflows/.*\.yml$'
+        exclude: '^\.github/workflows/.*\.yml$'
       - id: end-of-file-fixer
-          exclude: '^\.github/workflows/.*\.yml$'
-
+        exclude: '^\.github/workflows/.*\.yml$'
 
   - repo: https://github.com/psf/black
     rev: 25.9.0
