@@ -1,6 +1,27 @@
-name: pre-commit
+name: Pre-commit Auto-fix
 
 on:
   pull_request:
   push:
-    branches: [main] 
+    branches: [main]
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    
+    # This specific action runs pre-commit AND pushes changes back
+    - uses: pre-commit/action@v3.0.1
+      with:
+        extra_args: --all-files
+    
+    # If the above step changes files, this step commits them
+    - name: Commit changes
+      if: failure()
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git commit -am "Apply pre-commit fixes"
+        git push
