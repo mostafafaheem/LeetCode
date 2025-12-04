@@ -4,5 +4,5 @@ class Solution:
         sol = 0
         mn = min(nums)
         for nm in nums:
-            sol +=  nm - mn
+            sol += nm - mn
         return sol
