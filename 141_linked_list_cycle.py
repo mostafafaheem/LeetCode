@@ -5,12 +5,13 @@
 #         self.next = next
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        if not head: return False
+        if not head:
+            return False
         fast = head
         while fast and fast.next:
-            fast=fast.next.next
+            fast = fast.next.next
 
             head = head.next
-            if fast ==head:
+            if fast == head:
                 return True
         return False
